@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+<!-- v-clock 防止闪屏 -->
+<div id="vue" v-clock>
+    <div>
+        <p>{{info.name}}</p>
+        <p>{{info.age}}</p>
+        <p>{{info.address}}</p>
+        <p>{{info.hobby}}</p>
+    </div>
+
+</div>
+
+<!-- 导入Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<!-- axios.js -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#vue",
+        data(){
+          return {
+              info: {
+                name: null,
+                age: null,
+                address:{
+                    province: null,
+                    city: null,
+                    district: null
+                },
+                  hobby:[]
+              }
+          }
+        },
+        // 钩子函数
+        mounted() {
+            axios.get('../data.json').then(Response=>(this.info=Response.data));
+        }
+    });
+</script>
+
+</body>
+</html>

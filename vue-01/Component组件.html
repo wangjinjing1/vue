@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- view层 模板 -->
+<div id="app">
+
+    <custom v-for="item in items" v-bind:course="item"></custom>
+
+</div>
+
+<!-- 导入Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    
+    // 定义一个vue组件
+    Vue.component("custom", {
+        props: ['course'],
+        template: "<li>{{course}}</li>"
+    });
+
+    var vm = new Vue({
+        el: "#app",
+        // Model层 数据
+        data: {
+           items: ["Java", "C", "C#",]
+        },
+        // 方法必须定义在vue的methods对象中
+        methods: {
+            
+        },
+    });
+
+</script>
+
+</body>
+</html>
